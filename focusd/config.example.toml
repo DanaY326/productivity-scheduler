@@ -1,0 +1,25 @@
+# focusd config: copy to ~/.config/focusd/config.toml
+
+[scheduler]
+socket = "/run/focus-sched.sock"
+
+[focus]
+# auto | sway | hyprland | x11 | none
+backend = "auto"
+
+[distract]
+# Process names (/proc/<pid>/comm, max 15 chars, case-insensitive globs).
+# Matching processes and all their descendants are marked distract.
+comm = ["Discord", "discord", "steam", "spotify", "slack", "telegram-deskto"]
+# cgroup leaf names (globs), e.g. systemd scopes created by your launcher.
+cgroup = ["app-*discord*", "app-*steam*"]
+
+[schedule]
+# Distraction rules only apply inside these windows; focus boosting always does.
+# Empty = always on.
+active = ["09:00-12:30", "13:30-18:00"]
+days = ["mon", "tue", "wed", "thu", "fri"]
+
+[daemon]
+scan_interval = 2.0     # seconds between /proc rescans
+resync_interval = 10.0  # full resend to the scheduler (survives restarts)
